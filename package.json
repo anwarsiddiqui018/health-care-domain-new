@@ -1,0 +1,32 @@
+{
+  "name": "health-care-portal-new",
+  "version": "1.0.0",
+  "description": "This health care domain React by Anwar A Siddiqui",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anwarsiddiqui018/health-care-domain-new.git"
+  },
+  "keywords": [],
+  "author": "Anwar A Siddiqui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anwarsiddiqui018/health-care-domain-new/issues"
+  },
+  "homepage": "https://github.com/anwarsiddiqui018/health-care-domain-new#readme",
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "parcel": "^2.10.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "axios": "^1.6.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1"
+  }
+}

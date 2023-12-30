@@ -1,0 +1,30 @@
+/* Select all CSS */
+
+/* Header CSS */
+.header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+
+.logo {
+  padding: 10px;
+  display: flex;
+}
+
+.nav-items {
+  padding: 10px;
+  width: auto;
+}
+
+.nav-items > ul {
+  padding: 0px 10px;
+  list-style-type: none;
+  display: flex;
+}
+
+.nav-items > ul > li {
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
