@@ -2,42 +2,42 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const CoachLogin = () => {
+const UserLogin = () => {
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     userId: "",
     password: "",
   });
   const [formErrors, setFormErrors] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     let isValid = validate();
     if (isValid) {
-      console.log("submitted");
       const result = await axios.get("http://localhost:8080/users");
       const users = result.data;
-      console.log("users", users);
-      const allowredirect = users.reduce((isValidUser, currentUser) => {
-        if (
-          String(currentUser.id) === formValues.userId &&
-          String(currentUser.password) === formValues.password
-        ) {
-          isValidUser = true;
-        }
-        return isValidUser;
-      }, false);
-      if (allowredirect) {
-        navigate("/userhome", { state: { isLogedIn: true } });
+
+      const authenticatedUser = users.find(
+        (user) =>
+          String(user.id) === formValues.userId &&
+          String(user.password) === formValues.password
+      );
+      if (authenticatedUser) {
+        // Redirect to user home with the user ID
+        navigate("/userhome", {
+          state: { userId: authenticatedUser.id },
+        });
+      } else {
+        console.log("fail");
       }
-      console.log("result", result);
-    } else {
-      console.log("fail");
     }
   };
+
   const validate = () => {
     const errors = {};
 
@@ -54,6 +54,7 @@ const CoachLogin = () => {
     setFormErrors({ ...errors });
     return Object.keys(errors).length < 1;
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <h2>Login as User</h2>
@@ -71,20 +72,20 @@ const CoachLogin = () => {
         </div>
         <p>{formErrors.userId} </p>
         <div className="field">
-          <label>UserId</label>
+          <label>Password</label>
           <input
             type="password"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             value={formValues.password}
             onChange={handleChange}
           />
         </div>
-        <p>{formErrors.userId} </p>
+        <p>{formErrors.password} </p>
         <button className="">Submit</button>
       </div>
     </form>
   );
 };
 
-export default CoachLogin;
+export default UserLogin;

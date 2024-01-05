@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useHomeUser from "../utils/useHomeUser";
 import Appointment from "./Appointment";
 
-const HomeUser = () => {
+const UserHome = () => {
   const userData = useHomeUser();
   return (
     <div className="HomeUser">
@@ -20,4 +20,4 @@ const HomeUser = () => {
     </div>
   );
 };
-export default HomeUser;
+export default UserHome;

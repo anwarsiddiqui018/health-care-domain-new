@@ -130,6 +130,7 @@ const UserSignUp = () => {
           value={formData.name}
         />
       </div>
+      <span className="non-valid"> {formErrors.state}</span>
       <br />
       <span className="non-valid"> {formErrors.name}</span>
       <div>

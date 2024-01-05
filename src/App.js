@@ -15,7 +15,7 @@ import UserLogin from "./components/UserLogin";
 import CoachSignUp from "./components/CoachSignUp";
 import HomePage from "./components/HomePage";
 import UserSignUp from "./components/UserSignup";
-import HomeUser from "./components/HomeUser";
+import UserHome from "./components/UserHome";
 
 const AppLayout = () => {
   return (
@@ -69,7 +69,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/userhome",
-        element: <HomeUser />,
+        element: <UserHome />,
       },
     ],
   },
