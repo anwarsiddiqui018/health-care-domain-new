@@ -1,17 +1,7 @@
-import { useEffect, useState } from "react";
+import useCoachHome from "../utils/useCoachHome";
 
 const CoachHome = () => {
-  const [coachData, setCoachData] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const response = await fetch("http://localhost:8080/bookings");
-    const data = await response.json();
-    setCoachData(data);
-  };
+  const coachData = useCoachHome();
 
   return (
     <div className="CoachHome">

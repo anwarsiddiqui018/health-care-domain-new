@@ -1,26 +1,20 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useHomeUser from "../utils/useHomeUser";
+import Appointment from "./Appointment";
 
 const HomeUser = () => {
-  const [userData, setUserData] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-  const fetchData = async () => {
-    const response = await fetch("http://localhost:8080/coaches");
-    const data = await response.json();
-    setUserData(data);
-  };
+  const userData = useHomeUser();
   return (
     <div className="HomeUser">
       {userData.map((item) => (
         <div key={item.id}>
-          <p> UserId : {item.id}</p>
+          <p> CoachID : {item.id}</p>
           <p>Name: {item.name}</p>
           <p>Mobile Number:{item.mobileNumber}</p>
           <p>Speciality: {item.speciality}</p>
-          <Link to="/appointment">Book An Appointment</Link>
+          <Link to="/appointment" state={{ data: item.id }}>
+            Book An Appointment
+          </Link>
         </div>
       ))}
     </div>

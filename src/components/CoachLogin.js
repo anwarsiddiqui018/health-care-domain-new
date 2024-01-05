@@ -18,7 +18,7 @@ const CoachLogin = () => {
     let isValid = validate();
     if (isValid) {
       console.log("submitted");
-      const result = await axios.get("http://localhost:3000/coaches");
+      const result = await axios.get("http://localhost:8080/coaches");
       const users = result.data;
       const allowredirect = users.reduce((isValidUser, currentUser) => {
         if (
@@ -70,7 +70,7 @@ const CoachLogin = () => {
         </div>
         <p>{formErrors.userId} </p>
         <div className="field">
-          <label>UserId</label>
+          <label>Password</label>
           <input
             type="password"
             name="password"

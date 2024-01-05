@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Axios from "axios";
 
 const UserSignUp = () => {
-  const url = "http://localhost:3000/users";
+  const url = "http://localhost:8080/users";
   const [formData, setFormData] = useState({
     id: "21340",
     name: "",

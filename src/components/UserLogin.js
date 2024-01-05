@@ -18,8 +18,9 @@ const CoachLogin = () => {
     let isValid = validate();
     if (isValid) {
       console.log("submitted");
-      const result = await axios.get("http://localhost:3000/users");
+      const result = await axios.get("http://localhost:8080/users");
       const users = result.data;
+      console.log("users", users);
       const allowredirect = users.reduce((isValidUser, currentUser) => {
         if (
           String(currentUser.id) === formValues.userId &&
