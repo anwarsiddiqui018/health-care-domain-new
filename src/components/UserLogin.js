@@ -29,10 +29,17 @@ const UserLogin = () => {
       );
       if (authenticatedUser) {
         // Redirect to user home with the user ID
+        // Store userId in localStorage
+        localStorage.setItem("userId", authenticatedUser.id);
+
+        // Redirect to user home with the user ID
+
         navigate("/userhome", {
           state: { userId: authenticatedUser.id },
         });
       } else {
+        console.log("Authentication failed");
+        // Handle authentication failure (e.g., show error message)
         console.log("fail");
       }
     }

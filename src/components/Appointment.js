@@ -1,11 +1,12 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Appointment = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const userId = location.state ? location.state.userId : null;
+  // const userId = location.state ? location.state.userId : null;
+  const userId = new URLSearchParams(location.search).get("userId");
 
   const url = "http://localhost:8080/bookings";
   const [formData, setFormData] = useState({
@@ -16,6 +17,20 @@ const Appointment = () => {
   const [formErrors, setFormErrors] = useState({});
 
   const dateInputRef = useRef(null);
+
+  useEffect(() => {
+    // Check if userId is present in localStorage
+    const storedUserId = localStorage.getItem("userId");
+
+    // If userId is not present, redirect to login page
+    if (!storedUserId) {
+      alert("Please log in to book an appointment.");
+      navigate("/userlogin");
+    } else {
+      // Set userId in the component state
+      setFormData((prev) => ({ ...prev, userId: storedUserId }));
+    }
+  }, [navigate]);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -38,6 +53,8 @@ const Appointment = () => {
     } else if (name === "slot") {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
+    console.log("formData", formData); // Log formData for debugging
+    console.log("userId", userId); // Log userId for debugging
   };
 
   const handleFormSubmit = (e) => {
@@ -45,12 +62,6 @@ const Appointment = () => {
     console.log("formData", formData);
 
     let isValid = validateForm();
-
-    if (userId === null) {
-      alert("Please log in to book an appointment.");
-      navigate("/login");
-      return;
-    }
 
     if (isValid) {
       axios
